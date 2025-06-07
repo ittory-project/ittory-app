@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ittory-app",
-    "slug": "ittory-app",
+    "slug": "ittory",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -37,6 +37,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "debc3080-d281-4bc3-8d6f-13c2c3b86c33"
+      }
+    },
+    "owner": "seongbinkim"
   }
 }
