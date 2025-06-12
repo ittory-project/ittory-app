@@ -14,7 +14,7 @@ export default function HomeScreen() {
       } else {
         console.log('[WebView]', ...args);
       }
-    } catch (e) {
+    } catch {
       console.log('[WebView][raw]', event.nativeEvent.data);
     }
   };
@@ -22,7 +22,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <WebView
-        source={{ uri: 'https://webview.ittory-client.pages.dev/' }}
+        source={{ uri: 'https://dev-client.ittory.co.kr/' }}
         style={styles.webview}
         startInLoadingState={true}
         scalesPageToFit={true}
