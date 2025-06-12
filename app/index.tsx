@@ -1,21 +1,33 @@
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { WebView } from 'react-native-webview';
+import { WebView, WebViewMessageEvent } from 'react-native-webview';
 
 export default function HomeScreen() {
-  const handleConsoleMessage = (message: any) => {
-    console.log('WebView Console:', message.nativeEvent.message);
+  const isConsoleLevel = (level: any): level is 'log' | 'error' | 'warn' | 'info' | 'debug' =>
+    ['log', 'error', 'warn', 'info', 'debug'].includes(level);
+
+  const handleConsoleMessage = (event: WebViewMessageEvent) => {
+    try {
+      const { level, args } = JSON.parse(event.nativeEvent.data);
+      if (isConsoleLevel(level)) {
+        console[level]('[WebView]', ...args);
+      } else {
+        console.log('[WebView]', ...args);
+      }
+    } catch (e) {
+      console.log('[WebView][raw]', event.nativeEvent.data);
+    }
   };
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <WebView
-        source={{ uri: 'https://ittory.co.kr' }}
+        source={{ uri: 'https://webview.ittory-client.pages.dev/' }}
         style={styles.webview}
         startInLoadingState={true}
         scalesPageToFit={true}
         bounces={false}
-        onConsoleMessage={handleConsoleMessage}
+        onMessage={handleConsoleMessage}
         javaScriptEnabled={true}
         domStorageEnabled={true}
       />
