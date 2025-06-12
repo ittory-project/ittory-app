@@ -71,12 +71,6 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ],
-      [
-        "expo-linking",
-        {
-          "scheme": "ittoryapp"
-        }
       ]
     ],
     "experiments": {
